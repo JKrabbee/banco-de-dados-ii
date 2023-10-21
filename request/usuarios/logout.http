@@ -1,0 +1,2 @@
+POST http://localhost:8080/usuarios/logout HTTP/1.1
+Authorization: 869cd155-1303-4880-92c0-3120202ec51d

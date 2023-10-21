@@ -13,7 +13,7 @@ model Usuarios {
     usuario String @db.VarChar(255) @unique
     email String @db.VarChar(150) @unique
     senha String @db.Text
-    auth_token String @db.Text
+    auth_token String? @db.Text
     criadoEm DateTime @db.Timestamp() @default(now()) @map("criado_em")
     atualizadoEm DateTime @db.Timestamp() @updatedAt @map("atualizado_em")
 

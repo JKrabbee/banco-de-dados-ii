@@ -98,7 +98,7 @@ export class TweetService {
     return {
       code: 200,
       ok: true,
-      mensagem: "usuario excluido",
+      mensagem: "Tweet excluido",
       dados: this.mapToModel(tweetExcluido),
     };
   }

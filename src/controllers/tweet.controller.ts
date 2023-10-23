@@ -5,10 +5,12 @@ export class TweetController {
   public async criar(req: Request, res: Response) {
     try {
       const { content, type } = req.body;
-      const { usuarioID } = req.params;
+      const usuarioId = req.params;
+
+      console.log(usuarioId);
 
       const service = new TweetService();
-      const response = await service.criar({ content, type }, usuarioID);
+      const response = await service.criar({ content, type }, usuarioId.id);
 
       return res.status(response.code).json(response);
     } catch (error: any) {

@@ -38,7 +38,7 @@ export class UsuarioService {
     return {
       code: 201,
       ok: true,
-      mensagem: "Aluno cadastrado!",
+      mensagem: "Usuario cadastrado!",
       dados: this.mapToModel({ ...usuarioDB, tweets: null }),
     };
   }
@@ -122,6 +122,8 @@ export class UsuarioService {
       include: { tweets: true },
     });
 
+    console.log("Resultado bruto da consulta ao banco de dados:", usuarioDB);
+
     if (!usuarioDB.length) {
       return {
         code: 404,
@@ -133,8 +135,8 @@ export class UsuarioService {
     return {
       code: 200,
       ok: true,
-      mensagem: "Alunos listados com sucesso",
-      dados: usuarioDB.map((a) => this.mapToModel(a)),
+      mensagem: "Usuarios listados com sucesso",
+      dados: usuarioDB.map((usuario) => this.mapToModel(usuario)),
     };
   }
 
@@ -163,6 +165,7 @@ export class UsuarioService {
       dados: this.mapToModel(usuarioDB),
     };
   }
+
   public async deletar(id: string): Promise<ResponseDTO> {
     const usuarioExcluido = await repository.usuarios.delete({
       where: { id: id },
@@ -191,7 +194,7 @@ export class UsuarioService {
     return {
       code: 200,
       ok: true,
-      mensagem: "Aluno atualizado",
+      mensagem: "Usuario atualizado",
       dados: this.mapToModel(usuarioAtualizado),
     };
   }

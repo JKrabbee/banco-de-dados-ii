@@ -40,7 +40,7 @@ export class Usuario {
       nome: this._nome,
       email: this._email,
       usuario: this._usuario,
-      tweets: this._tweets,
+      tweets: this._tweets?.map((tweet) => tweet.toJSON()),
     };
   }
 }

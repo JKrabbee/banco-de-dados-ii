@@ -1,0 +1,8 @@
+POST http://localhost:8080/tweets/d53789de-2f50-467e-b623-2abc3120f47c HTTP/1.1
+Authorization: 90f376c3-42a9-4845-bea8-722c0001fcb3
+content-type: application/json
+
+{
+    "content": "teste 1234",
+    "type": "replie"
+}

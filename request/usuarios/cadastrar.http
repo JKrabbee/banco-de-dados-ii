@@ -4,6 +4,6 @@ content-type: application/json
 {
     "nome": "testedsadsa",
     "usuario": "testeTestedsadas",
-    "email": "teste1@teste.com",
+    "email": "teste2@teste.com",
     "senha": "123456"
 }

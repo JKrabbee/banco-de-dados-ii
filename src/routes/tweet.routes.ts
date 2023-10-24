@@ -29,14 +29,16 @@ export function tweetRoutes() {
   //ATUALIZAR
   router.put(
     "/:id",
-    [auth.validar, validarFormatoId.validar, verificarIdUsuario.validar],
+    [auth.validar, validarFormatoId.validar],
     controller.atualizar
   );
 
   //DELETAR
   router.delete(
     "/:id",
-    [auth.validar, validarFormatoId.validar, verificarIdUsuario.validar],
+    [auth.validar, validarFormatoId.validar],
     controller.deletar
   );
+
+  return router;
 }

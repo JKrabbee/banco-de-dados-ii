@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 app.use("/usuarios", usuarioRoutes());
-app.use("/tweets", tweetRoutes);
+app.use("/tweets", tweetRoutes());
 app.use("/likes", likeRoutes);
 
 app.listen(process.env.PORT, () =>

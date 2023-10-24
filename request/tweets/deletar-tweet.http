@@ -1,0 +1,2 @@
+DELETE http://localhost:8080/tweets/28e6947a-04e3-430f-9113-7068320fcc4f HTTP/1.1
+Authorization: d8bd3cbb-c95a-478b-a483-d0664e8b5bab

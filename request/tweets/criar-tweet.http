@@ -1,5 +1,5 @@
 POST http://localhost:8080/tweets/edefd123-f801-45d0-b951-861cc35add57 HTTP/1.1
-Authorization: d8bd3cbb-c95a-478b-a483-d0664e8b5bab
+Authorization: 8689c0ea-3d41-4162-a300-5e32b8234a4d
 content-type: application/json
 
 {

@@ -11,7 +11,7 @@ app.use(cors());
 
 app.use("/usuarios", usuarioRoutes());
 app.use("/tweets", tweetRoutes());
-app.use("/likes", likeRoutes);
+app.use("/likes", likeRoutes());
 
 app.listen(process.env.PORT, () =>
   console.log(`Server is up in port ${process.env.PORT}`)

@@ -1,12 +1,19 @@
-import { Tweets as TweetsPrisma } from "@prisma/client";
+import { Likes as LikesPrisma, Tweets as TweetsPrisma } from "@prisma/client";
 import repository from "../database/prisma.connection";
 import { AtualizarTweetDTO, ResponseDTO } from "../dtos";
 import { CriarTweetDTO } from "../dtos/criar-tweet.dto";
 import { Tweet } from "../models";
+import { Like } from "../models/like.model";
 
 export class TweetService {
-  private mapToModel(TweetDB: TweetsPrisma): Tweet {
-    return new Tweet(TweetDB.id, TweetDB.content, TweetDB.type);
+  private async mapToModel(
+    TweetDB: TweetsPrisma & { likes: LikesPrisma[] | null }
+  ): Promise<Tweet> {
+    const likesTweet = TweetDB?.likes
+      ? TweetDB.likes.map((LikesDB) => new Like(LikesDB.id))
+      : undefined;
+
+    return new Tweet(TweetDB.id, TweetDB.content, TweetDB.type, likesTweet);
   }
 
   public async criar(
@@ -18,6 +25,9 @@ export class TweetService {
         content: dados.content,
         type: dados.type,
         usuario: { connect: { id: usuarioId } },
+      },
+      include: {
+        likes: true,
       },
     });
 
@@ -32,6 +42,9 @@ export class TweetService {
   public async listar(): Promise<ResponseDTO> {
     const tweetsDB = await repository.tweets.findMany({
       orderBy: { criadoEm: "desc" },
+      include: {
+        likes: true,
+      },
     });
 
     if (!tweetsDB.length) {
@@ -54,6 +67,9 @@ export class TweetService {
     const tweetDB = await repository.tweets.findUnique({
       where: {
         id: id,
+      },
+      include: {
+        likes: true,
       },
     });
 
@@ -80,6 +96,9 @@ export class TweetService {
     const tweetAtualizado = await repository.tweets.update({
       where: { id: idTweet },
       data: { content: dados.content },
+      include: {
+        likes: true,
+      },
     });
 
     return {
@@ -93,6 +112,9 @@ export class TweetService {
   public async deletar(id: string): Promise<ResponseDTO> {
     const tweetExcluido = await repository.tweets.delete({
       where: { id: id },
+      include: {
+        likes: true,
+      },
     });
 
     return {
